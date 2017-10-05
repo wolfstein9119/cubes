@@ -56,6 +56,16 @@ class BColors:
     ENDC = '\033[0m'
 
 
+RESOLVER = {
+    1: BColors.FAIL,
+    2: BColors.FAIL,
+    3: BColors.FAIL,
+    4: BColors.FAIL,
+    5: BColors.OKGREEN,
+    6: BColors.OKGREEN
+}
+
+
 def check_value(value: int):
     assert 1 <= value <= 6, 'value must be [1, 6]'
 
@@ -85,5 +95,40 @@ def draw_stage(value: int, stage: int) -> str:
     return f'{BR}{row}{BR}'
 
 
-def draw_cube(values: list):
-    pass
+def draw_cube(values: list, resolver=RESOLVER):
+    SEPARATOR = '   '
+    count_cubes = len(values)
+
+    middle_row = [
+        f'{resolver.get(i, "")}{draw_middle_row()}{BColors.ENDC}' for i in values
+    ]
+    MIDDLE_ROW = SEPARATOR.join(middle_row)
+
+    headers = [
+        f'{resolver.get(i, "")}{draw_head()}{BColors.ENDC}' for i in values
+    ]
+    print(SEPARATOR.join(headers))
+
+    stage1 = [
+        f'{resolver.get(i, "")}{draw_stage(i, 1)}{BColors.ENDC}' for i in values
+    ]
+    print(SEPARATOR.join(stage1))
+
+    print(MIDDLE_ROW)
+
+    stage2 = [
+        f'{resolver.get(i, "")}{draw_stage(i, 2)}{BColors.ENDC}' for i in values
+    ]
+    print(SEPARATOR.join(stage2))
+
+    print(MIDDLE_ROW)
+
+    stage3 = [
+        f'{resolver.get(i, "")}{draw_stage(i, 3)}{BColors.ENDC}' for i in values
+    ]
+    print(SEPARATOR.join(stage3))
+
+    footers = [
+        f'{resolver.get(i, "")}{draw_footer()}{BColors.ENDC}' for i in values
+    ]
+    print(SEPARATOR.join(footers))
