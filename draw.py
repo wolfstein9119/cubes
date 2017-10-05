@@ -11,8 +11,6 @@ COLUMN_BOTTOM = '┴'
 CROSS = '┼'
 PAINTED_CELL = '▒'
 
-ROW_LENGTH = 7
-
 STAGES = {
     1: {
         1: [0, 0, 0],
@@ -95,7 +93,7 @@ def draw_stage(value: int, stage: int) -> str:
     return f'{BR}{row}{BR}'
 
 
-def draw_cube(values: list, resolver=RESOLVER):
+def draw_cubes(values: list, resolver=RESOLVER):
     SEPARATOR = '   '
     count_cubes = len(values)
 

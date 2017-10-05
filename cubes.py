@@ -45,7 +45,7 @@ def main():
         print(f'{" " * 10 * number_cubes}COMBINATION: {combination}')
         vector = generate_vector(number_cubes)
         for i in range(number_cubes):
-            draw_cube(vector[:i+1])
+            draw_cubes(vector[:i + 1])
         sleep(delay)
         combination += 1
         clean_console()
